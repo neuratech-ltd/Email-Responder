@@ -90,7 +90,5 @@ async def create_subscription(mailbox: str, notification_url: str, client_state:
 
     async with httpx.AsyncClient() as client:
         response = await client.post(url, headers=await _headers(), json=body)
-
-       
     response.raise_for_status()
     return response.json()
