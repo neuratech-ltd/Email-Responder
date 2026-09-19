@@ -59,6 +59,8 @@ async def generate_reply_variations(subject: str, body: str, count: int = 3) -> 
     the model uses) so the versions actually read differently from each
     other, rather than being near-identical.
     """
+
+    
     temperatures = [0.3, 0.7, 1.0][:count]
     # pad with 0.7 if someone asks for more than 3 variations
     while len(temperatures) < count:
