@@ -1,0 +1,13 @@
+services:
+  email-responder:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      # Keeps your mailbox list persistent and editable from outside the
+      # container — edit config/mailboxes.json on your machine and it takes
+      # effect immediately (or via the API, which writes back to this same file)
+      - ./config:/app/config
+    restart: unless-stopped

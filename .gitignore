@@ -1,0 +1,17 @@
+# Environment variables & secrets
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Editor/OS junk
+.vscode/
+.idea/
+.DS_Store
+
+# Docker
+*.log
