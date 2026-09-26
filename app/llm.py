@@ -30,7 +30,7 @@ async def _call_groq(subject: str, body: str, temperature: float) -> str:
                 "Content-Type": "application/json",
             },
             json={
-                "model": "llama-3.3-70b-versatile",
+                "model": "openai/gpt-oss-20b",
                 "messages": [
                     {"role": "system", "content": SYSTEM_INSTRUCTION},
                     {"role": "user", "content": prompt},
@@ -59,8 +59,6 @@ async def generate_reply_variations(subject: str, body: str, count: int = 3) -> 
     the model uses) so the versions actually read differently from each
     other, rather than being near-identical.
     """
-
-    
     temperatures = [0.3, 0.7, 1.0][:count]
     # pad with 0.7 if someone asks for more than 3 variations
     while len(temperatures) < count:
@@ -68,4 +66,3 @@ async def generate_reply_variations(subject: str, body: str, count: int = 3) -> 
 
     tasks = [_call_groq(subject, body, temp) for temp in temperatures]
     return await asyncio.gather(*tasks)
-
